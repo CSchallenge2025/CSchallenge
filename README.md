@@ -1,6 +1,6 @@
 # HireAI – AI-Powered Career Platform
 
-An end-to-end, microservices-based platform to help people build better resumes, sign in securely, and match jobs with AI.
+Platform with services for auth, resume processing, and job matching.
 
 Badges: Spring Boot 3 • Next.js 14 • FastAPI • Docker Compose • PostgreSQL • Redis • Keycloak
 
@@ -13,7 +13,7 @@ Badges: Spring Boot 3 • Next.js 14 • FastAPI • Docker Compose • PostgreS
 - Frontend (Next.js 14): auth pages and a simple dashboard
 - Infrastructure via Docker Compose: PostgreSQL, Redis, Keycloak, PgAdmin
 - Rate limiting at the gateway, CORS set for localhost, health checks
-- Job Matcher microservice (alpha): FastAPI wrapper for job extraction/matching
+- Job Matcher microservice (alpha) – FastAPI wrapper for job/job+resume match scoring
 - Resume Service (FastAPI): PDF upload/parse, AI enhancement, ATS scoring
 - Jobs Service (FastAPI): job feed, matching, insights
 
@@ -94,39 +94,6 @@ Frontend:
 - `cd frontend`
 - `npm run dev`
 - Type check: `npm run type-check`
-
-### Job Matcher (alpha)
-
-Path: `Services/JobsService/job_matcher`
-API: `src/job_matcher/api_server.py`
-Endpoints: `POST /api/v1/jobs/extract`, `GET /api/v1/health`
-Compose service: `job-matcher` (8010)
-Frontend page: `frontend/pages/job-matcher.tsx`
-
-Run locally:
-```
-docker compose up -d redis mongodb
-cd Services/JobsService/job_matcher
-$env:GEMINI_API_KEY='your_gemini_key'
-$env:FIRECRAWL_API_KEY='your_firecrawl_key'
-pip install -r requirements.txt
-python -m uvicorn job_matcher.api_server:app --host 0.0.0.0 --port 8000
-```
-Use `NEXT_PUBLIC_JOB_MATCHER_URL=http://localhost:8000` for local run.
-
-Minimal request:
-```
-POST /api/v1/jobs/extract
-{
-  "job_url": "https://example.com/job",
-  "cv_data": { "text": "Resume text", "fileName": "resume.pdf" },
-  "candidate_id": "user@example.com"
-}
-```
-
-Troubleshooting:
-- 500 → check GEMINI/FIRECRAWL keys and logs
-- CORS → verify `NEXT_PUBLIC_JOB_MATCHER_URL`
 
 ---
 
