@@ -186,14 +186,11 @@ services:
     environment:
       PYTHONUNBUFFERED: "1"
       ENVIRONMENT: docker
-      # AI API Keys
       MODEL: gemini/gemini-flash-latest
-      GEMINI_API_KEY: AIzaSyBhSal3MorZTbGInNjjiPpy2ROwB8mUWJA
-      FIRECRAWL_API_KEY: fc-089b757a7a3f41b5b8cb4c7e6418d9e5
-      # Resume Service Configuration (Future)
+      GEMINI_API_KEY: CHANGE_ME_GEMINI_KEY
+      FIRECRAWL_API_KEY: CHANGE_ME_FIRECRAWL_KEY
       RESUME_SERVICE_URL: http://resume-service:8083
       RESUME_SERVICE_ENABLED: "false"
-      # MongoDB Configuration
       MONGODB_URI: mongodb://mongo:mongo@mongodb:27017
       MONGODB_DATABASE: job_matcher_db
     networks:
