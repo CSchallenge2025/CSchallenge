@@ -1,6 +1,6 @@
 # HireAI – AI-Powered Career Platform
 
-Platform with services for auth, resume processing, and job matching.
+HireAI focuses on reducing early rejection and bias in digital hiring—especially for youth and emerging talent in MENA and Sub‑Saharan Africa—by using explainable AI to improve resumes, extract job requirements, score fit, and return actionable feedback so candidates gain visibility instead of being silently filtered out.
 
 Badges: Spring Boot 3 • Next.js 14 • FastAPI • Docker Compose • PostgreSQL • Redis • Keycloak
 
@@ -123,14 +123,6 @@ User Service:
 - Rate limiting with Redis token bucket.
 - User data in PostgreSQL; resume/jobs planned for MongoDB.
 - Health endpoints and container logs for ops.
-
----
-
-## Troubleshooting
-
-- Port busy (Windows): `Get-Process -Id (Get-NetTCPConnection -LocalPort 8080).OwningProcess | Stop-Process -Force`
-- Recreate stack: `docker compose down -v && docker compose up -d --build`
-- Redis ping: `docker exec -it ms-redis redis-cli ping`
 
 ---
 
